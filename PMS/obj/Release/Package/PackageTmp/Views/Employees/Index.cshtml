@@ -1,0 +1,183 @@
+﻿@model IEnumerable<PMS.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+<p>
+    @Html.ActionLink("Download Pdf", "DownloadPdf", "DownloadPdf", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+<h3 class="card-title text-center">List of Employees</h3>
+<table id="EmployeeTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <thead>
+
+    <tr>
+
+        <th>
+            Allowance
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Designation
+        </th>
+        <th>
+            Shift
+        </th>
+        <th>
+            Employee Code
+        </th>
+        <th>
+            Employee Name
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Basic Salary
+        </th>
+        <th>
+            Joining Date
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Action
+        </th>
+        <th>
+            Action
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                @if (item.Status == "InActive")
+                {
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Allowance.AllowanceType)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Designation.DesignationName)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Schedule.ShiftName)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Basic)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Joining)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Allowance.AllowanceType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation.DesignationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Schedule.ShiftName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Basic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Joining)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                }
+                    
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+
+            </tr>
+        </tbody>
+    }
+
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#EmployeeTable').DataTable({
+                "searching": true,
+                "ordering": true,
+                //"scrollY": "200px",
+                "scrollCollapse": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+
+}

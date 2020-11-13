@@ -1,0 +1,77 @@
+﻿@model PMS.Models.Advance
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+<div class="wrapper wrapper--w790">
+<div class="card card-5">
+<div class="card-heading">
+<div class="card-heading">
+    <h2 class="title">Details Advance</h2>
+</div>
+<div class="card-body">
+<div class="form-row">
+
+            
+    <dl class="dl-horizontal" >
+        <dt class="name" style="color: white">
+            Employee Code
+        </dt>
+
+        <dd class="name" style="color: white">
+            @Html.DisplayFor(model => model.Employee.Code)
+        </dd>
+
+        <dt class="name" style="color: white">
+            Advance Date
+        </dt>
+
+        <dd class="name" style="color: white">
+            @Html.DisplayFor(model => model.AdvanceDate)
+        </dd>
+
+        <dt class="name" style="color: white">
+            Advance Reason
+        </dt>
+
+        <dd class="name" style="color: white">
+            @Html.DisplayFor(model => model.AdvanceReason)
+        </dd>
+
+        <dt class="name" style="color: white">
+            Advance Amount
+        </dt>
+
+        <dd class="name" style="color: white">
+            @Html.DisplayFor(model => model.AdvanceAmount)
+        </dd>
+
+        <dt class="name" style="color: white">
+            Status
+        </dt>
+
+        <dd class="name" style="color: white">
+            @Html.DisplayFor(model => model.AdvanceStatus)
+        </dd>
+
+    </dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>
+    <div>
+        <button class="btn btn--radius btn--white"> @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </button>
+    </div>
+
+    <div>
+        <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+    </div>
+</p>

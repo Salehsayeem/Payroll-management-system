@@ -1,0 +1,126 @@
+﻿@using Vereyon.Web
+@model IEnumerable<PMS.Models.Leave>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+@Html.RenderFlashMessages()
+<h3 class="card-title text-center">List of Leaves</h3>
+<table id="LeaveTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <thead>
+        <tr>
+            <th>
+                Employee Code
+            </th>
+            <th>
+                Leave Name
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Reason for leave
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                @if (item.LeaveStatus == "InActive")
+                {
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Employee.Code)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.LeaveName)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.LeaveReason)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.LeaveStatus)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveReason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveStatus)
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#LeaveTable').DataTable({
+                "searching": true,
+                "ordering": true,
+                //"scrollY": "200px",
+                "scrollCollapse": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+
+}

@@ -1,0 +1,118 @@
+﻿@using Vereyon.Web
+@model IEnumerable<PMS.Models.Deduction>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+@Html.RenderFlashMessages()
+<h3 class="card-title text-center">List of Deductions</h3>
+<table id="DeductionsTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <thead>
+        <tr>
+            <th>
+                Employee Code
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Reason
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                @if (item.DeductionStatus == "InActive")
+                {
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.Employee.Code)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.DeductionDate)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.DeductionReason)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.DeductionAmount)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.DeductionStatus)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeductionDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeductionReason)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeductionAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeductionStatus)
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        </tbody>
+
+    }
+
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DeductionsTable').DataTable({
+                "searching": true,
+                "ordering": true,
+                //"scrollY": "200px",
+                "scrollCollapse": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+
+}

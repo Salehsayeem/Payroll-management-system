@@ -1,0 +1,82 @@
+﻿@using Vereyon.Web
+@model IEnumerable<PMS.Models.Designation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+    </p>
+}
+<br />
+@Html.RenderFlashMessages()
+<h3 class="card-title text-center">List of Designations</h3>
+<table id="DesignationsTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <thead>
+        <tr>
+            <th>
+                Designation
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DesignationName)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })}
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DesignationsTable').DataTable({
+                "searching": true,
+                "ordering": true,
+                //"scrollY": "200px",
+                "scrollCollapse": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+
+}

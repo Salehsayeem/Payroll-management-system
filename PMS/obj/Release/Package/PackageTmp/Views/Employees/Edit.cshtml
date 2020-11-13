@@ -1,0 +1,147 @@
+﻿@model PMS.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Update Employee Informations</h2>
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-row">
+                        <div class="name">Code</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Code, new { htmlAttributes = new {@readonly="readonly", @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Name</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Phone</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new {type="phone", @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Gender</div>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(x => x.Gender, new[]
+                            {
+                                new SelectListItem(){Text = "Male",Value = "1"},
+                                new SelectListItem(){Text = "Female",Value = "2"},
+                            }, "Select Gender", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Email</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new {@type="email", @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Basic Salary</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Basic, new { htmlAttributes = new { @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.Basic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Joining Date</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Joining, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Joining, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Status</div>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(x => x.Status, new[]
+                            {
+                                new SelectListItem(){Text = "Active",Value = "Active"},
+                                new SelectListItem(){Text = "InActive",Value = "InActive"},
+                            }, "Select Status", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Shift</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("ScheduleId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ScheduleId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Department</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Designation</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("DesignationId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Allowance Type</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("AllowanceId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AllowanceId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Save</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

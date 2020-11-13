@@ -1,0 +1,121 @@
+﻿@model PMS.Models.Employee
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                Allowance Type
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Allowance.AllowanceType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Department.DepartmentName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Designation.DesignationName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Designation.DesignationName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Schedule.ShiftName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Schedule.ShiftName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Basic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Basic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Joining)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Joining)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-row ">
+                <button class="btn btn--radius-2 btn--red" type="submit">Delete</button> |
+                <div>
+                    <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+                </div>
+
+            </div>
+        }
+    </div>

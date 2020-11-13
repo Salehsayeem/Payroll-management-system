@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Payroll Management System</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*Datatable*@
+    <link href="~/Content/Datatable/css/addons/datatables.min.css" rel="stylesheet" />
+
+    @*About*@
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="~/Content/About/styles/about-us.css" rel="stylesheet" />
+
+    @*Form*@
+    <!-- Vendor CSS-->
+    <link href="~/Content/Form/vendor/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/Form/vendor/datepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- Main CSS-->
+    <link href="~/Content/Form/css/main.css" rel="stylesheet" />
+    
+</head>
+<body>
+
+
+    <div class="wrapper d-flex align-items-stretch">
+
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <h1 class="logo active" style="color: aquamarine">
+
+                    <a class="text-white" href="@Url.Action("Index", "Home")">Payroll Management System</a>
+                </h1>
+
+                <ul class="list-unstyled components mb-5">
+                    @Html.Partial("_LoginPartial")
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("About", "About", "Home")
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <li>
+                                @Html.ActionLink("Salary", "Index", "Salary")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Advances", "Index", "Advances")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Allowances", "Index", "Allowances")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Attendances", "Index", "Attendances")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("Deductions", "Index", "Deductions")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("Employees", "Index", "Employees")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Leaves", "Index", "Leaves")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Overtimes", "Index", "Overtimes")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Role", "Index", "Role")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Departments", "Index", "Departments")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Designations", "Index", "Designations")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Schedules", "Index", "Schedules")
+                            </li>
+                            <li>
+                                @Html.ActionLink("User List", "UsersWithRoles", "Account")
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+        <div class="float-lg-right">
+
+        </div>
+
+
+
+
+        <div id="content" class="p-4 p-md-5 pt-5">
+
+            @RenderBody()
+            <footer class="font-weight-bolder">
+
+                <div class="text-center py-3">
+                    © 2020 Copyright:
+                    <a href="">Payroll Management System</a>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script src="~/Content/js/popper.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+    @*Datatable*@
+    <script src="~/Content/Datatable/js/addons/datatables.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @*Form*@
+
+    <!-- Vendor JS-->
+    <script src="~/Content/Form/vendor/select2/select2.min.js"></script>
+    <script src="~/Content/Form/vendor/datepicker/daterangepicker.js"></script>
+    <script src="~/Content/Form/vendor/datepicker/moment.min.js"></script>
+    <script src="~/Content/Form/js/global.js"></script>
+    
+</body>
+</html>

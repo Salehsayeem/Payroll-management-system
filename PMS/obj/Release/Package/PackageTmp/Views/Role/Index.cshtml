@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+    </p>
+}
+<br />
+<h3 class="card-title text-center">List of Available Roles</h3>
+<table id="RoleTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <tr>
+        <th>
+            Role Name
+        </th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+
+        </tr>
+    }
+</table>

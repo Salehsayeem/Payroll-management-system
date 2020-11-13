@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B8190C4-17EA-4AC6-9FBF-B5598F9A5E20}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMS</RootNamespace>
+    <AssemblyName>PMS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44318</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>68abf51d</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Vereyon.Web.FlashMessage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Vereyon.Web.FlashMessage.1.0.0\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvancesController.cs" />
+    <Compile Include="Controllers\AllowancesController.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
+    <Compile Include="Controllers\DeductionsController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DesignationsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeavesController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OvertimesController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SalaryController.cs" />
+    <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002251743490_Initial.cs" />
+    <Compile Include="Migrations\202002251743490_Initial.Designer.cs">
+      <DependentUpon>202002251743490_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002251916078_Initital2.cs" />
+    <Compile Include="Migrations\202002251916078_Initital2.Designer.cs">
+      <DependentUpon>202002251916078_Initital2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003031507599_OvertimeTotal.cs" />
+    <Compile Include="Migrations\202003031507599_OvertimeTotal.designer.cs">
+      <DependentUpon>202003031507599_OvertimeTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003041934598_Attendance.cs" />
+    <Compile Include="Migrations\202003041934598_Attendance.designer.cs">
+      <DependentUpon>202003041934598_Attendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003081906478_OvertimeHour.cs" />
+    <Compile Include="Migrations\202003081906478_OvertimeHour.designer.cs">
+      <DependentUpon>202003081906478_OvertimeHour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003131638096_AttendaceDate.cs" />
+    <Compile Include="Migrations\202003131638096_AttendaceDate.designer.cs">
+      <DependentUpon>202003131638096_AttendaceDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003171928162_Advance.cs" />
+    <Compile Include="Migrations\202003171928162_Advance.designer.cs">
+      <DependentUpon>202003171928162_Advance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003171956285_dpt.cs" />
+    <Compile Include="Migrations\202003171956285_dpt.designer.cs">
+      <DependentUpon>202003171956285_dpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003181208330_Allowance.cs" />
+    <Compile Include="Migrations\202003181208330_Allowance.designer.cs">
+      <DependentUpon>202003181208330_Allowance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003181216404_Attendance1.cs" />
+    <Compile Include="Migrations\202003181216404_Attendance1.designer.cs">
+      <DependentUpon>202003181216404_Attendance1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003181224322_Deduction.cs" />
+    <Compile Include="Migrations\202003181224322_Deduction.designer.cs">
+      <DependentUpon>202003181224322_Deduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003181231138_Designation.cs" />
+    <Compile Include="Migrations\202003181231138_Designation.designer.cs">
+      <DependentUpon>202003181231138_Designation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003181256064_Overtime.cs" />
+    <Compile Include="Migrations\202003181256064_Overtime.designer.cs">
+      <DependentUpon>202003181256064_Overtime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004041348034_DepartmentVal.cs" />
+    <Compile Include="Migrations\202004041348034_DepartmentVal.designer.cs">
+      <DependentUpon>202004041348034_DepartmentVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004041351320_DesignationVal.cs" />
+    <Compile Include="Migrations\202004041351320_DesignationVal.designer.cs">
+      <DependentUpon>202004041351320_DesignationVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004041406333_AllVal.cs" />
+    <Compile Include="Migrations\202004041406333_AllVal.designer.cs">
+      <DependentUpon>202004041406333_AllVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004041414327_emailVal.cs" />
+    <Compile Include="Migrations\202004041414327_emailVal.designer.cs">
+      <DependentUpon>202004041414327_emailVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Advance.cs" />
+    <Compile Include="Models\Allowance.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Deduction.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Designation.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Leave.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Overtime.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Advance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Advance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Allowance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Allowance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Attendances.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Attendances.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Employees.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employees.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\SalaryVM.cs" />
+    <Compile Include="ViewModel\Users_in_Role_ViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\About\images\1.jpg" />
+    <Content Include="Content\About\images\team-member.gif" />
+    <Content Include="Content\About\styles\about-us.css" />
+    <Content Include="Content\About\styles\framework.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ClockPicker\bootstrap-clockpicker.css" />
+    <Content Include="Content\ClockPicker\bootstrap-clockpicker.js" />
+    <Content Include="Content\ClockPicker\bootstrap-clockpicker.min.css" />
+    <Content Include="Content\ClockPicker\bootstrap-clockpicker.min.js" />
+    <Content Include="Content\ClockPicker\css\bootstrap-theme.css" />
+    <Content Include="Content\ClockPicker\css\bootstrap-theme.min.css" />
+    <Content Include="Content\ClockPicker\css\bootstrap.css" />
+    <Content Include="Content\ClockPicker\css\bootstrap.min.css" />
+    <Content Include="Content\ClockPicker\css\github.min.css" />
+    <Content Include="Content\ClockPicker\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\ClockPicker\jquery-clockpicker.css" />
+    <Content Include="Content\ClockPicker\jquery-clockpicker.js" />
+    <Content Include="Content\ClockPicker\jquery-clockpicker.min.css" />
+    <Content Include="Content\ClockPicker\jquery-clockpicker.min.js" />
+    <Content Include="Content\ClockPicker\js\bootstrap.js" />
+    <Content Include="Content\ClockPicker\js\bootstrap.min.js" />
+    <Content Include="Content\ClockPicker\js\highlight.min.js" />
+    <Content Include="Content\ClockPicker\js\html5shiv.js" />
+    <Content Include="Content\ClockPicker\js\jquery.js" />
+    <Content Include="Content\ClockPicker\js\jquery.min.js" />
+    <Content Include="Content\ClockPicker\js\respond.min.js" />
+    <Content Include="Content\css\addons\datatables-select.min.css" />
+    <Content Include="Content\css\addons\datatables.min.css" />
+    <Content Include="Content\css\addons\directives.min.css" />
+    <Content Include="Content\css\addons\flag.min.css" />
+    <Content Include="Content\css\addons\jquery.zmd.hierarchical-display.min.css" />
+    <Content Include="Content\css\addons\rating.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap\mixins\_border-radius.css" />
+    <Content Include="Content\css\bootstrap\mixins\_screen-reader.css" />
+    <Content Include="Content\css\bootstrap\mixins\_visibility.css" />
+    <Content Include="Content\css\bootstrap\utilities\_stretched-link.css" />
+    <Content Include="Content\css\bootstrap\_media.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\Datatable\css\addons\datatables-select.min.css" />
+    <Content Include="Content\Datatable\css\addons\datatables.min.css" />
+    <Content Include="Content\Datatable\css\addons\directives.min.css" />
+    <Content Include="Content\Datatable\css\addons\flag.min.css" />
+    <Content Include="Content\Datatable\css\addons\jquery.zmd.hierarchical-display.min.css" />
+    <Content Include="Content\Datatable\css\addons\rating.min.css" />
+    <Content Include="Content\Datatable\css\bootstrap.css" />
+    <Content Include="Content\Datatable\css\bootstrap.min.css" />
+    <Content Include="Content\Datatable\css\mdb.css" />
+    <Content Include="Content\Datatable\css\mdb.lite.css" />
+    <Content Include="Content\Datatable\css\mdb.lite.min.css" />
+    <Content Include="Content\Datatable\css\mdb.min.css" />
+    <Content Include="Content\Datatable\css\modules\animations-extended.min.css" />
+    <Content Include="Content\Datatable\css\style.css" />
+    <Content Include="Content\Datatable\js\addons\datatables-select.min.js" />
+    <Content Include="Content\Datatable\js\addons\datatables.min.js" />
+    <Content Include="Content\Datatable\js\addons\directives.min.js" />
+    <Content Include="Content\Datatable\js\addons\flag.min.js" />
+    <Content Include="Content\Datatable\js\addons\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\Datatable\js\addons\jquery.zmd.hierarchical-display.min.js" />
+    <Content Include="Content\Datatable\js\addons\masonry.pkgd.min.js" />
+    <Content Include="Content\Datatable\js\addons\rating.min.js" />
+    <Content Include="Content\Datatable\js\bootstrap.js" />
+    <Content Include="Content\Datatable\js\bootstrap.min.js" />
+    <Content Include="Content\Datatable\js\jquery.js" />
+    <Content Include="Content\Datatable\js\jquery.min.js" />
+    <Content Include="Content\Datatable\js\mdb.js" />
+    <Content Include="Content\Datatable\js\mdb.min.js" />
+    <Content Include="Content\Datatable\js\modules\animations-extended.min.js" />
+    <Content Include="Content\Datatable\js\modules\forms-free.min.js" />
+    <Content Include="Content\Datatable\js\modules\scrolling-navbar.min.js" />
+    <Content Include="Content\Datatable\js\modules\treeview.min.js" />
+    <Content Include="Content\Datatable\js\modules\wow.min.js" />
+    <Content Include="Content\Datatable\js\popper.js" />
+    <Content Include="Content\Datatable\js\popper.min.js" />
+    <Content Include="Content\Form\css\main.css" />
+    <Content Include="Content\Form\css\main.min.css" />
+    <Content Include="Content\Form\js\global.js" />
+    <Content Include="Content\Form\vendor\datepicker\daterangepicker.css" />
+    <Content Include="Content\Form\vendor\datepicker\daterangepicker.js" />
+    <Content Include="Content\Form\vendor\datepicker\moment.min.js" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Content\Form\vendor\jquery\jquery.js" />
+    <Content Include="Content\Form\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\Form\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\Form\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Form\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Form\vendor\select2\select2.min.css" />
+    <Content Include="Content\Form\vendor\select2\select2.min.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\popper.js" />
+    <Content Include="Content\slider\css\addons\datatables-select.min.css" />
+    <Content Include="Content\slider\css\addons\datatables.min.css" />
+    <Content Include="Content\slider\css\addons\directives.min.css" />
+    <Content Include="Content\slider\css\addons\flag.min.css" />
+    <Content Include="Content\slider\css\addons\jquery.zmd.hierarchical-display.min.css" />
+    <Content Include="Content\slider\css\addons\rating.min.css" />
+    <Content Include="Content\slider\css\bootstrap.css" />
+    <Content Include="Content\slider\css\bootstrap.min.css" />
+    <Content Include="Content\slider\css\mdb.css" />
+    <Content Include="Content\slider\css\mdb.lite.css" />
+    <Content Include="Content\slider\css\mdb.lite.min.css" />
+    <Content Include="Content\slider\css\mdb.min.css" />
+    <Content Include="Content\slider\css\modules\animations-extended.min.css" />
+    <Content Include="Content\slider\css\style.css" />
+    <Content Include="Content\slider\images\2.jpg" />
+    <Content Include="Content\slider\images\3.jpg" />
+    <Content Include="Content\slider\images\4.jpg" />
+    <Content Include="Content\slider\images\5.jpg" />
+    <Content Include="Content\slider\images\6.jpg" />
+    <Content Include="Content\slider\images\7.jpg" />
+    <Content Include="Content\slider\img\mdb-favicon.ico" />
+    <Content Include="Content\slider\img\overlays\01.png" />
+    <Content Include="Content\slider\img\overlays\02.png" />
+    <Content Include="Content\slider\img\overlays\03.png" />
+    <Content Include="Content\slider\img\overlays\04.png" />
+    <Content Include="Content\slider\img\overlays\05.png" />
+    <Content Include="Content\slider\img\overlays\06.png" />
+    <Content Include="Content\slider\img\overlays\07.png" />
+    <Content Include="Content\slider\img\overlays\08.png" />
+    <Content Include="Content\slider\img\overlays\09.png" />
+    <Content Include="Content\slider\img\svg\arrow_left.svg" />
+    <Content Include="Content\slider\img\svg\arrow_right.svg" />
+    <Content Include="Content\slider\js\addons\datatables-select.min.js" />
+    <Content Include="Content\slider\js\addons\datatables.min.js" />
+    <Content Include="Content\slider\js\addons\directives.min.js" />
+    <Content Include="Content\slider\js\addons\flag.min.js" />
+    <Content Include="Content\slider\js\addons\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\slider\js\addons\jquery.zmd.hierarchical-display.min.js" />
+    <Content Include="Content\slider\js\addons\masonry.pkgd.min.js" />
+    <Content Include="Content\slider\js\addons\rating.min.js" />
+    <Content Include="Content\slider\js\bootstrap.js" />
+    <Content Include="Content\slider\js\bootstrap.min.js" />
+    <Content Include="Content\slider\js\jquery.js" />
+    <Content Include="Content\slider\js\jquery.min.js" />
+    <Content Include="Content\slider\js\mdb.js" />
+    <Content Include="Content\slider\js\mdb.min.js" />
+    <Content Include="Content\slider\js\modules\animations-extended.min.js" />
+    <Content Include="Content\slider\js\modules\forms-free.min.js" />
+    <Content Include="Content\slider\js\modules\scrolling-navbar.min.js" />
+    <Content Include="Content\slider\js\modules\treeview.min.js" />
+    <Content Include="Content\slider\js\modules\wow.min.js" />
+    <Content Include="Content\slider\js\popper.js" />
+    <Content Include="Content\slider\js\popper.min.js" />
+    <Content Include="Content\slider\src\js\free\forms-free.js" />
+    <Content Include="Content\slider\src\js\free\scrolling-navbar.js" />
+    <Content Include="Content\slider\src\js\free\treeview.js" />
+    <Content Include="Content\slider\src\js\free\wow.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\datatables-select.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\datatables.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\jquery.zmd.hierarchical-display.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\masonry.pkgd.min.js" />
+    <Content Include="Content\slider\src\js\vendor\addons\rating.js" />
+    <Content Include="Content\slider\src\js\vendor\free\bs-custom-file-input.js" />
+    <Content Include="Content\slider\src\js\vendor\free\chart.js" />
+    <Content Include="Content\slider\src\js\vendor\free\chartjs-datalabels.js" />
+    <Content Include="Content\slider\src\js\vendor\free\enhanced-modals.js" />
+    <Content Include="Content\slider\src\js\vendor\free\jquery.easing.js" />
+    <Content Include="Content\slider\src\js\vendor\free\velocity.js" />
+    <Content Include="Content\slider\src\js\vendor\free\waves.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Content\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Content\scss\bootstrap\bootstrap.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="Content\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_overflow.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_stretched-link.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="Content\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Content\scss\bootstrap\vendor\_rfs.scss" />
+    <Content Include="Content\scss\bootstrap\_alert.scss" />
+    <Content Include="Content\scss\bootstrap\_badge.scss" />
+    <Content Include="Content\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="Content\scss\bootstrap\_button-group.scss" />
+    <Content Include="Content\scss\bootstrap\_buttons.scss" />
+    <Content Include="Content\scss\bootstrap\_card.scss" />
+    <Content Include="Content\scss\bootstrap\_carousel.scss" />
+    <Content Include="Content\scss\bootstrap\_close.scss" />
+    <Content Include="Content\scss\bootstrap\_code.scss" />
+    <Content Include="Content\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="Content\scss\bootstrap\_dropdown.scss" />
+    <Content Include="Content\scss\bootstrap\_forms.scss" />
+    <Content Include="Content\scss\bootstrap\_functions.scss" />
+    <Content Include="Content\scss\bootstrap\_grid.scss" />
+    <Content Include="Content\scss\bootstrap\_images.scss" />
+    <Content Include="Content\scss\bootstrap\_input-group.scss" />
+    <Content Include="Content\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\scss\bootstrap\_list-group.scss" />
+    <Content Include="Content\scss\bootstrap\_media.scss" />
+    <Content Include="Content\scss\bootstrap\_mixins.scss" />
+    <Content Include="Content\scss\bootstrap\_modal.scss" />
+    <Content Include="Content\scss\bootstrap\_nav.scss" />
+    <Content Include="Content\scss\bootstrap\_navbar.scss" />
+    <Content Include="Content\scss\bootstrap\_pagination.scss" />
+    <Content Include="Content\scss\bootstrap\_popover.scss" />
+    <Content Include="Content\scss\bootstrap\_print.scss" />
+    <Content Include="Content\scss\bootstrap\_progress.scss" />
+    <Content Include="Content\scss\bootstrap\_reboot.scss" />
+    <Content Include="Content\scss\bootstrap\_root.scss" />
+    <Content Include="Content\scss\bootstrap\_spinners.scss" />
+    <Content Include="Content\scss\bootstrap\_tables.scss" />
+    <Content Include="Content\scss\bootstrap\_toasts.scss" />
+    <Content Include="Content\scss\bootstrap\_tooltip.scss" />
+    <Content Include="Content\scss\bootstrap\_transitions.scss" />
+    <Content Include="Content\scss\bootstrap\_type.scss" />
+    <Content Include="Content\scss\bootstrap\_utilities.scss" />
+    <Content Include="Content\scss\bootstrap\_variables.scss" />
+    <Content Include="Content\scss\style.scss" />
+    <Content Include="Content\css\addons\datatables-select.min.css.map" />
+    <Content Include="Content\css\addons\datatables.min.css.map" />
+    <Content Include="Content\css\addons\directives.min.css.map" />
+    <Content Include="Content\css\addons\flag.min.css.map" />
+    <Content Include="Content\css\addons\jquery.zmd.hierarchical-display.min.css.map" />
+    <Content Include="Content\css\addons\rating.min.css.map" />
+    <Content Include="Content\slider\css\addons\datatables-select.min.css.map" />
+    <Content Include="Content\slider\css\addons\datatables.min.css.map" />
+    <Content Include="Content\slider\css\addons\directives.min.css.map" />
+    <Content Include="Content\slider\css\addons\flag.min.css.map" />
+    <Content Include="Content\slider\css\addons\jquery.zmd.hierarchical-display.min.css.map" />
+    <Content Include="Content\slider\css\addons\rating.min.css.map" />
+    <Content Include="Content\slider\css\mdb.lite.min.css.map" />
+    <Content Include="Content\slider\css\mdb.min.css.map" />
+    <Content Include="Content\slider\css\modules\animations-extended.min.css.map" />
+    <Content Include="Content\slider\js\addons\datatables-select.min.js.map" />
+    <Content Include="Content\slider\js\addons\datatables.min.js.map" />
+    <Content Include="Content\slider\js\addons\directives.min.js.map" />
+    <Content Include="Content\slider\js\addons\flag.min.js.map" />
+    <Content Include="Content\slider\js\addons\imagesloaded.pkgd.min.js.map" />
+    <Content Include="Content\slider\js\addons\jquery.zmd.hierarchical-display.min.js.map" />
+    <Content Include="Content\slider\js\addons\masonry.pkgd.min.js.map" />
+    <Content Include="Content\slider\js\addons\rating.min.js.map" />
+    <Content Include="Content\slider\js\mdb.lite.min.js.map" />
+    <Content Include="Content\slider\js\mdb.min.js.map" />
+    <Content Include="Content\slider\js\modules\animations-extended.min.js.map" />
+    <Content Include="Content\slider\js\modules\forms-free.min.js.map" />
+    <Content Include="Content\slider\js\modules\scrolling-navbar.min.js.map" />
+    <Content Include="Content\slider\js\modules\treeview.min.js.map" />
+    <Content Include="Content\slider\js\modules\wow.min.js.map" />
+    <Content Include="Content\slider\scss\addons\_datatables-select.scss" />
+    <Content Include="Content\slider\scss\addons\_datatables.scss" />
+    <Content Include="Content\slider\scss\addons\_directives.scss" />
+    <Content Include="Content\slider\scss\addons\_flag.scss" />
+    <Content Include="Content\slider\scss\addons\_hierarchical-display.scss" />
+    <Content Include="Content\slider\scss\addons\_rating.scss" />
+    <Content Include="Content\slider\scss\core\bootstrap\_functions.scss" />
+    <Content Include="Content\slider\scss\core\bootstrap\_rfs.scss" />
+    <Content Include="Content\slider\scss\core\bootstrap\_variables.scss" />
+    <Content Include="Content\slider\scss\core\_colors.scss" />
+    <Content Include="Content\slider\scss\core\_global.scss" />
+    <Content Include="Content\slider\scss\core\_helpers.scss" />
+    <Content Include="Content\slider\scss\core\_masks.scss" />
+    <Content Include="Content\slider\scss\core\_mixins.scss" />
+    <Content Include="Content\slider\scss\core\_typography.scss" />
+    <Content Include="Content\slider\scss\core\_variables.scss" />
+    <Content Include="Content\slider\scss\core\_waves.scss" />
+    <Content Include="Content\slider\scss\free\modules\animations-extended\animations-extended.scss" />
+    <Content Include="Content\slider\scss\free\modules\animations-extended\_module.scss" />
+    <Content Include="Content\slider\scss\free\_animations-basic.scss" />
+    <Content Include="Content\slider\scss\free\_badges.scss" />
+    <Content Include="Content\slider\scss\free\_buttons.scss" />
+    <Content Include="Content\slider\scss\free\_cards.scss" />
+    <Content Include="Content\slider\scss\free\_carousels.scss" />
+    <Content Include="Content\slider\scss\free\_depreciated.scss" />
+    <Content Include="Content\slider\scss\free\_dropdowns.scss" />
+    <Content Include="Content\slider\scss\free\_footers.scss" />
+    <Content Include="Content\slider\scss\free\_forms.scss" />
+    <Content Include="Content\slider\scss\free\_input-group.scss" />
+    <Content Include="Content\slider\scss\free\_list-group.scss" />
+    <Content Include="Content\slider\scss\free\_loader.scss" />
+    <Content Include="Content\slider\scss\free\_modals.scss" />
+    <Content Include="Content\slider\scss\free\_msc.scss" />
+    <Content Include="Content\slider\scss\free\_navbars.scss" />
+    <Content Include="Content\slider\scss\free\_pagination.scss" />
+    <Content Include="Content\slider\scss\free\_steppers.scss" />
+    <Content Include="Content\slider\scss\free\_tables.scss" />
+    <Content Include="Content\slider\scss\free\_treeview.scss" />
+    <Content Include="Content\slider\scss\mdb-free.scss" />
+    <Content Include="Content\slider\scss\mdb-lite-free.scss" />
+    <Content Include="Content\slider\scss\_custom-styles.scss" />
+    <Content Include="Content\slider\scss\_custom-variables.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\ClockPicker\css\bootstrap-theme.css.map" />
+    <Content Include="Content\ClockPicker\css\bootstrap.css.map" />
+    <Content Include="Content\ClockPicker\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\ClockPicker\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\ClockPicker\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Datatable\js\addons\datatables-select.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\datatables.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\directives.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\flag.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\imagesloaded.pkgd.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\jquery.zmd.hierarchical-display.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\masonry.pkgd.min.js.map" />
+    <Content Include="Content\Datatable\js\addons\rating.min.js.map" />
+    <Content Include="Content\Datatable\js\mdb.lite.min.js.map" />
+    <Content Include="Content\Datatable\js\mdb.min.js.map" />
+    <Content Include="Content\Datatable\js\modules\animations-extended.min.js.map" />
+    <Content Include="Content\Datatable\js\modules\forms-free.min.js.map" />
+    <Content Include="Content\Datatable\js\modules\scrolling-navbar.min.js.map" />
+    <Content Include="Content\Datatable\js\modules\treeview.min.js.map" />
+    <Content Include="Content\Datatable\js\modules\wow.min.js.map" />
+    <Content Include="Content\Datatable\css\addons\datatables-select.min.css.map" />
+    <Content Include="Content\Datatable\css\addons\datatables.min.css.map" />
+    <Content Include="Content\Datatable\css\addons\directives.min.css.map" />
+    <Content Include="Content\Datatable\css\addons\flag.min.css.map" />
+    <Content Include="Content\Datatable\css\addons\jquery.zmd.hierarchical-display.min.css.map" />
+    <Content Include="Content\Datatable\css\addons\rating.min.css.map" />
+    <Content Include="Content\Datatable\css\mdb.lite.min.css.map" />
+    <Content Include="Content\Datatable\css\mdb.min.css.map" />
+    <Content Include="Content\Datatable\css\modules\animations-extended.min.css.map" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Form\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Content\Form\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Form\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Form\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Form\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Schedules\Create.cshtml" />
+    <Content Include="Views\Schedules\Delete.cshtml" />
+    <Content Include="Views\Schedules\Details.cshtml" />
+    <Content Include="Views\Schedules\Edit.cshtml" />
+    <Content Include="Views\Schedules\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Designations\Create.cshtml" />
+    <Content Include="Views\Designations\Delete.cshtml" />
+    <Content Include="Views\Designations\Details.cshtml" />
+    <Content Include="Views\Designations\Edit.cshtml" />
+    <Content Include="Views\Designations\Index.cshtml" />
+    <Content Include="Views\Allowances\Create.cshtml" />
+    <Content Include="Views\Allowances\Delete.cshtml" />
+    <Content Include="Views\Allowances\Details.cshtml" />
+    <Content Include="Views\Allowances\Edit.cshtml" />
+    <Content Include="Views\Allowances\Index.cshtml" />
+    <Content Include="Views\Advances\Create.cshtml" />
+    <Content Include="Views\Advances\Delete.cshtml" />
+    <Content Include="Views\Advances\Details.cshtml" />
+    <Content Include="Views\Advances\Edit.cshtml" />
+    <Content Include="Views\Advances\Index.cshtml" />
+    <Content Include="Views\Deductions\Create.cshtml" />
+    <Content Include="Views\Deductions\Delete.cshtml" />
+    <Content Include="Views\Deductions\Details.cshtml" />
+    <Content Include="Views\Deductions\Edit.cshtml" />
+    <Content Include="Views\Deductions\Index.cshtml" />
+    <Content Include="Views\Leaves\Create.cshtml" />
+    <Content Include="Views\Leaves\Delete.cshtml" />
+    <Content Include="Views\Leaves\Details.cshtml" />
+    <Content Include="Views\Leaves\Edit.cshtml" />
+    <Content Include="Views\Leaves\Index.cshtml" />
+    <Content Include="Views\Overtimes\Create.cshtml" />
+    <Content Include="Views\Overtimes\Delete.cshtml" />
+    <Content Include="Views\Overtimes\Details.cshtml" />
+    <Content Include="Views\Overtimes\Edit.cshtml" />
+    <Content Include="Views\Overtimes\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Attendances\Create.cshtml" />
+    <Content Include="Views\Attendances\Delete.cshtml" />
+    <Content Include="Views\Attendances\Details.cshtml" />
+    <Content Include="Views\Attendances\Edit.cshtml" />
+    <Content Include="Views\Attendances\Index.cshtml" />
+    <Content Include="Views\Attendances\AttendanceListOnInterval.cshtml" />
+    <Content Include="Views\Salary\Index.cshtml" />
+    <Content Include="Views\Attendances\AttendanceEmployee.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Account\UsersWithRoles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002251743490_Initial.resx">
+      <DependentUpon>202002251743490_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002251916078_Initital2.resx">
+      <DependentUpon>202002251916078_Initital2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003031507599_OvertimeTotal.resx">
+      <DependentUpon>202003031507599_OvertimeTotal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003041934598_Attendance.resx">
+      <DependentUpon>202003041934598_Attendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003081906478_OvertimeHour.resx">
+      <DependentUpon>202003081906478_OvertimeHour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131638096_AttendaceDate.resx">
+      <DependentUpon>202003131638096_AttendaceDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171928162_Advance.resx">
+      <DependentUpon>202003171928162_Advance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171956285_dpt.resx">
+      <DependentUpon>202003171956285_dpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181208330_Allowance.resx">
+      <DependentUpon>202003181208330_Allowance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181216404_Attendance1.resx">
+      <DependentUpon>202003181216404_Attendance1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181224322_Deduction.resx">
+      <DependentUpon>202003181224322_Deduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181231138_Designation.resx">
+      <DependentUpon>202003181231138_Designation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181256064_Overtime.resx">
+      <DependentUpon>202003181256064_Overtime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041348034_DepartmentVal.resx">
+      <DependentUpon>202004041348034_DepartmentVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041351320_DesignationVal.resx">
+      <DependentUpon>202004041351320_DesignationVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041406333_AllVal.resx">
+      <DependentUpon>202004041406333_AllVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041414327_emailVal.resx">
+      <DependentUpon>202004041414327_emailVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Advance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Advance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Allowance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Allowance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Attendances.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Attendances.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Employees.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Employees.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9946</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44318/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

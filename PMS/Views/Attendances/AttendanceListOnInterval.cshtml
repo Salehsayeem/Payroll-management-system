@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PMS.Models.Attendance>
+
+@{
+    ViewBag.Title = "AttendanceListOnInterval";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AttendanceListOnInterval</h2>
+
+@{
+    int id = 0;
+    <!--Get number of days of current month-->
+    var DaysInmonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+
+}
+<table class="table table-bordered table-info">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <!--Loop all the days of month and print it-->
+            @for (var numb = 1; numb <= DaysInmonth; numb++)
+            {
+                <th>@numb</th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        <!--Loop model-->
+        @foreach (var emp in Model)
+        {
+            
+            
+                if (id != @emp.EmployeeId)
+                {
+
+                    id = emp.EmployeeId;
+
+
+
+                    <tr>
+                        <!--print employee name one time only at the start of row-->
+
+                        <td>@emp.EmployeeId</td>
+
+                        <!--loop all days of month-->
+                        @for (var numb = 1; numb <= DaysInmonth; numb++)
+                        {
+                            <td>
+                                @{
+                                    <!--print only that date time value which is equal to current date(as it will match column header) and current employee name, else print empty-->
+                                    var GetThatDayValue = Model.FirstOrDefault(a => a.AttendanceDate.Day == numb && a.EmployeeId == emp.EmployeeId && a.AttendanceDate == emp.AttendanceDate);
+                                    var DD = GetThatDayValue != null ? GetThatDayValue.AttendanceDate.ToString("dd/MM/yyyy ") : "";
+                                    <text> @DD </text>
+                                }
+                            </td>
+
+                        }
+                    </tr>
+                }
+            }
+        
+    </tbody>
+</table>

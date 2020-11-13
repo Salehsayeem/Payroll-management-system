@@ -1,0 +1,94 @@
+﻿@model PMS.Models.Leave
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Create Leave</h2>
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="name">Leave Name</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LeaveName, new { htmlAttributes = new { @class = "input--style-5" } })
+                            @Html.ValidationMessageFor(model => model.LeaveName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Start Date</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @Type = "date", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">End Date</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @Type = "date", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Reason</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LeaveReason, new { htmlAttributes = new { @class = "input--style-5 textarea" } })
+                            @Html.ValidationMessageFor(model => model.LeaveReason, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Status</div>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(x => x.LeaveStatus, new[]
+                            {
+                                new SelectListItem(){Text = "Active",Value = "Active"},
+                                new SelectListItem(){Text = "InActive",Value = "InActive"},
+                            }, "Select Status", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LeaveStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Employee Code</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Create</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

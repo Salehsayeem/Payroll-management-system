@@ -1,0 +1,38 @@
+employee.Code = GetEmployeeCode(employee);
+
+
+public string GetEmployeeCode(Employee aEmployee)
+        {
+            var employeeCount = db.Employees.Count(m => (m.DepartmentId == aEmployee.DepartmentId)) + 1;
+            var aDepartment = db.Departments.FirstOrDefault(m => m.Id == aEmployee.DepartmentId);
+
+            string leadingZero = "";
+            int length = 3 - employeeCount.ToString().Length;
+            for (int i = 0; i < length; i++)
+            {
+                leadingZero += "0";
+            }
+
+            string employeeCode = aDepartment.Code + "-" + leadingZero +"-"+DateTime.Now.Year+ employeeCount;
+            return employeeCode;
+        }
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+    <script type="text/javascript">
+
+        $(function calculate() {
+            $('#TotalHour,#RatePerHour').keyup(function () {
+                var totalHour = parseFloat($('#TotalHour').val()) || 0;
+                var ratePerHour = parseFloat($("#RatePerHour").val()) ||0;
+                $('#TotalAmount').val(ratePerHour * totalHour);
+            });
+        });
+    </script>
+}
+
+
+https://codepen.io/w3programmings/pen/zzrKwr?__cf_chl_captcha_tk__=4d553f7d8033c4ead83692d2826a2d9d4871efda-1583306121-0-AZueYclPzKjOqq2tHFC_7RzY-4simv08dQgFZM-Tk3DeoCAEfnzIZ7OGGSGBXzvdf5TCcZr6DKniSb7LGNqhlNTzz2i_1hpQSoTS6MzWqrkLGyrCdrFUFrm4gUQ2Tw1WiitsQ6ah4VTkj70W8qPGG9RPNwuKWbZ-deszhElDmJMXmKQxnS_oWJbQHvJtO-bWZXVJMg-N4OAxCdQ1j7iHGKBam4NuIkFU2OPEVrWo4qgdRzDiWKfP1aibwKibHMS1RKbJlZeHOLRmal4e7YI0zU91o8sQ28t-a2CkLCFE6eYYSmReAE2H7IiSsR_BcYVNPXoTz_5ymTTirFpi2oCLiTcMaOYYW5C3oOGyeKDsbUglbDx1cTNIstXes3aT1XG6sR3SHSK0V8mU_hhUjehS1G319167VuLOBOugQN6MD5IItLoyW4oYwpDhEIbM5158F2b1cUqzactJ4RBMQFncMreqKiAC-D5BrqFtSp-dyaH4

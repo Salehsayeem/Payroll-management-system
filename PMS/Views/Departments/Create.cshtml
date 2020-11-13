@@ -1,0 +1,57 @@
+﻿@model PMS.Models.Department
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+    <div class="card card-5">
+    <div class="card-heading">
+        <h2 class="title">Create Department</h2>
+    </div>
+    <div class="card-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="name">Name</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DepartmentName, new { htmlAttributes = new { @class = "input--style-5" } })
+                @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">Code</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DepartmentCode, new { htmlAttributes = new { @class = "input--style-5" } })
+                @Html.ValidationMessageFor(model => model.DepartmentCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <button class="btn btn--radius-2 btn--blue" type="submit">Create</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

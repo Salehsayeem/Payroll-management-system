@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PMS.Models.Allowance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Create", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+<p>
+
+    @Html.ActionLink("Download Pdf", "DownloadPdf", "DownloadPdf", new { @class = "btn btn--radius btn--green" })
+</p>
+<br />
+<h3 class="card-title text-center">List of Allowances</h3>
+<table id="AllowanceTable" class="table table-responsive table-hover table-bordered" style="background-color: aquamarine">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowanceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowanceAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllowanceStatus)
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                @if (item.AllowanceStatus == "InActive")
+                {
+                    <td>
+                        Type
+                    </td>
+                    <td>
+                        Amount
+                    </td>
+                    <td>
+                        Status
+                    </td>
+                }
+                else
+                {
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.AllowanceType)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.AllowanceAmount)
+                    </td>
+                    <td style="text-decoration: line-through">
+                        @Html.DisplayFor(modelItem => item.AllowanceStatus)
+                    </td>
+                }
+                    
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        </tbody>
+
+    }
+
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#AllowanceTable').DataTable({
+                "searching": true,
+                "ordering": true,
+                //"scrollY": "200px",
+                "scrollCollapse": true
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+
+}

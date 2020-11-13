@@ -1,0 +1,85 @@
+﻿@model PMS.Models.Deduction
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+    <div class="card card-5">
+    <div class="card-heading">
+        <h2 class="title">Edit Deduction</h2>
+    </div>
+    <div class="card-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-row">
+            <div class="name">Date</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeductionDate, new {  htmlAttributes = new { @Type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeductionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">Reason</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeductionReason, new { htmlAttributes = new { @class = "input--style-5" } })
+                @Html.ValidationMessageFor(model => model.DeductionReason, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">Amount</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeductionAmount, new { htmlAttributes = new { @class = "input--style-5" } })
+                @Html.ValidationMessageFor(model => model.DeductionAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">Status</div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.DeductionStatus, new[]
+                {
+                    new SelectListItem(){Text = "Active",Value = "Active"},
+                    new SelectListItem(){Text = "InActive",Value = "InActive"},
+                }, "Select Status", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DeductionStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">Employee Code</div>
+            <div class="col-md-10">
+                @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <button class="btn btn--radius-2 btn--blue" type="submit">Save</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn--radius btn--white"> @Html.ActionLink("Back to List", "Index")</button>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
